@@ -8,8 +8,9 @@ public class супермагакактусмашина : MonoBehaviour
     public float Hspeed;
     public float Vspeed;
     public float jumpforse;
-    public bool STOYAK;
-    public Vector3 SydaNahyi;
+    public int cofactor;
+    public bool isGrounded;
+    public Vector3 ToSpawn;
     void Start()
     {
         suprmachinasastus = GetComponent <Rigidbody> ();
@@ -22,14 +23,15 @@ public class супермагакактусмашина : MonoBehaviour
     void Update(){
         if(Input.GetKeyDown(KeyCode.Space)&& STOYAK ){
             suprmachinasastus.AddForce(0,jumpforse, 0);
-            STOYAK = false;
+            isGrounded = false;
         }
         if(this.gameObject.GetComponent<Transform>().position.y <= -30)
-            this.gameObject.GetComponent<Transform>().position = SydaNahyi;
+            this.gameObject.GetComponent<Transform>().position = ToSpawn;
+     
     }
-    void OnCollisionStay(Collision BIGDICK){
-        if(BIGDICK.gameObject.tag == "XYI")
-            STOYAK = true;
+    void OnCollisionStay(Collision other){
+        if(other.gameObject.tag == "XYI")//переименуй тег в юнити
+            isGrounded = true;
             // стояк включен
     }
 }
