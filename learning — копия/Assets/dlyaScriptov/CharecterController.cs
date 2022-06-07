@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HI : MonoBehaviour
+public class CharecterController : MonoBehaviour
 {
     private Rigidbody rb;
     public float Hspeed;
