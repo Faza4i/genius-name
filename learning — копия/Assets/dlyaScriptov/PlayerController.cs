@@ -39,8 +39,10 @@ public class PlayerController : MonoBehaviour {
 		else if (Input.GetKey (KeyCode.D))
 			transform.localPosition += transform.right*Hspeed*Cofactor*Time.fixedDeltaTime;
 
-		if (Input.GetKeyDown (KeyCode.Space) && isGround)
+		if (Input.GetKeyDown (KeyCode.Space) && isGround){
+			isGround = false;
 			rb.AddForce (transform.up* jumpF);
+		}
 	}
 	private void RunOrSit(){
 		if (Input.GetKeyDown (KeyCode.LeftShift))
@@ -61,10 +63,5 @@ public class PlayerController : MonoBehaviour {
 	private void OnCollisionEnter(Collision other){
 		if (other.gameObject.tag == "Ground")
 			isGround = true;
-	}
-
-	private void OnCollisionExit(Collision other){
-		if (other.gameObject.tag == "Ground")
-			isGround = false;
 	}
 }
