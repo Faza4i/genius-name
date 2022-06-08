@@ -39,6 +39,7 @@ public class CharacterControl : MonoBehaviour {
 		moveDir.y -= gravity * Time.deltaTime;
 
 		controller.Move (moveDir * Time.deltaTime);
+		
 		if(this.gameObject.GetComponent<Transform>().position.y <= -30)
             this.gameObject.GetComponent<Transform>().position = ToSpawn;
 	}
