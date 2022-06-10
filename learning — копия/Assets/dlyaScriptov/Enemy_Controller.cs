@@ -23,6 +23,10 @@ public class Enemy_Controller : MonoBehaviour {
 
 	void Start () {
 		nav = GetComponent<NavMeshAgent> ();
+		
+		if (player == null) {
+			player = GameObject.FindGameObjectWithTag ("Player");
+		}
 	}
 	
 	void Update () {
