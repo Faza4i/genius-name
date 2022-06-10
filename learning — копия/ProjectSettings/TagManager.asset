@@ -8,6 +8,7 @@ TagManager:
   - supermusika
   - Zombi
   - DynamicObj
+  - WaveControll
   layers:
   - Default
   - TransparentFX
