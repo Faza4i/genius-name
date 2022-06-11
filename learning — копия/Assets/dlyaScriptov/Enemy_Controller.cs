@@ -17,6 +17,11 @@ public class Enemy_Controller : MonoBehaviour {
 	public int damageEnemy;
 	[Header("Время ожидания для следующей атаки")]
 	public float attackRate;
+	public AudioSource zozoAuDIO;
+	public AudioClip LoviPoEbly;
+	public AudioClip poshel;
+	public float VolumeLoviPoEbly;
+	public float VolumePoshel;
 
 	private float nextATK = 0f;
 
@@ -39,6 +44,8 @@ public class Enemy_Controller : MonoBehaviour {
 			nav.enabled = true;
 			nav.SetDestination (player.transform.position);
 			gameObject.GetComponent<Animator> ().SetTrigger ("Run");
+			if (!zozoAuDIO.isPlaying)
+				zozoAuDIO.PlayOneShot(poshel, VolumePoshel);
 		}
 
 		if (dist <= distAtack && Time.time > nextATK) {
@@ -46,6 +53,7 @@ public class Enemy_Controller : MonoBehaviour {
 			Debug.Log ("папався");
 			player.GetComponent<PlayerHP> ().playerHp -= damageEnemy;
 			gameObject.GetComponent<Animator> ().SetTrigger ("Attack");
+			zozoAuDIO.PlayOneShot(LoviPoEbly, VolumeLoviPoEbly);
 		}
 	}
 }

@@ -9,6 +9,8 @@ TagManager:
   - Zombi
   - DynamicObj
   - WaveControll
+  - slider
+  - WaveText
   layers:
   - Default
   - TransparentFX

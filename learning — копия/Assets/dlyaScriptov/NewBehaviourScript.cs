@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public static bool GamePaused = false;
+    public GameObject PauseMenuUI;
+    
     public void playGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -13,5 +16,7 @@ public class NewBehaviourScript : MonoBehaviour
     public void back ()
     { 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        PauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
     }
 }

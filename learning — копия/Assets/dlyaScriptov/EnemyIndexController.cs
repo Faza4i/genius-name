@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyIndexController : MonoBehaviour {
 	private WaveSpawner _waveSpawner;
-
+	
 	void Start () {
 		_waveSpawner = GameObject.FindGameObjectWithTag ("WaveControll").GetComponent<WaveSpawner> ();
 		Debug.Log (_waveSpawner.gameObject.name);

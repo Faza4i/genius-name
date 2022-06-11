@@ -7,12 +7,24 @@ public class PlayerHP : MonoBehaviour {
 	public int playerHp;
 	[Header("Бар здоровья игрока")]
 	public Text healthBar;
+	public GameObject panelRestart;
+	public Weapon offShooting;
+	public CharacterControl offControll;
+	public GameObject offButton;
+	public CameraController offcam;
+
+
 
 	void Update () {
 		healthBar.text = playerHp + "HP";
 		if (playerHp <= 0) {
 			healthBar.text = "0";
-			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+			panelRestart.SetActive(true);
+			offShooting.enabled = false;
+			offControll.enabled = false;
+			offButton.SetActive(false);
+			offcam.enabled = false;
+			Cursor.lockState = CursorLockMode.Confined;
 		}
 	}
 }
