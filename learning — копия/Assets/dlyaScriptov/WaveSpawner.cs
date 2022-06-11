@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour {
 	[SerializeField]private Waves[] _waves;
 	private int _currentEnemyIndex;
 	private int _currentWaveIndex;
 	private int _enemiesLeftToSpawn;
+	public Text wave;
+	public int waveNum;
 
 	private void Start(){
 		_enemiesLeftToSpawn = _waves [0].WaveSettings.Length;
@@ -30,7 +33,9 @@ public class WaveSpawner : MonoBehaviour {
 	}
 
 	public void LaunchWave(){
+		waveNum += 1;
 		StartCoroutine (SpawnEnemyInWave());
+		wave.text = "WAVE:" + waveNum;
 	}
 }
 [System.Serializable]
