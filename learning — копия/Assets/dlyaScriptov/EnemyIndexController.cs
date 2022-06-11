@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class EnemyIndexController : MonoBehaviour {
 	private WaveSpawner _waveSpawner;
+	private int waveNum = 1;
+	public Text wave;
+	private GameObject waveObj;
 	
 	void Start () {
 		_waveSpawner = GameObject.FindGameObjectWithTag ("WaveControll").GetComponent<WaveSpawner> ();
