@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour {
 	//сила отталкивания
@@ -25,6 +26,8 @@ public class Weapon : MonoBehaviour {
 	public GameObject hitEffect;
 	//эффект при дамаге
 	public GameObject damageEffect;
+	//текст хп зомби
+	public Text ZombieHp;
 
 	private float nextFire = 0f;
 
@@ -59,7 +62,7 @@ public class Weapon : MonoBehaviour {
 				GameObject blood = Instantiate (damageEffect, hit.point, Quaternion.LookRotation (hit.normal));
 				Destroy (blood, 2f);
 				hit.transform.gameObject.GetComponent<ZombiHP> ().HP -= damage;
-				Debug.Log (hit.transform.gameObject.GetComponent<ZombiHP> ().HP);
+				ZombieHp.text = "HpZombie" + hit.transform.gameObject.GetComponent<ZombiHP> ().HP;
 			}
 		}
 	}
