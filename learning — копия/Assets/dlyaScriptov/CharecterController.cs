@@ -9,6 +9,9 @@ public class CharacterControl : MonoBehaviour {
 	public float cofactor;
 	private AudioSource Au;
 	public AudioClip walkAu;
+	public AudioClip sitAu;
+	public AudioClip runAu;
+	public AudioClip jumpAu;
 
 	//приватные переменные
 	private Vector3 moveDir;
@@ -26,26 +29,38 @@ public class CharacterControl : MonoBehaviour {
 			moveDir = transform.TransformDirection (moveDir);
 			moveDir *= speed*cofactor;
 		}
-		if (moveDir != Vector3.zero) {
-			if (!Au.isPlaying)
-				Au.PlayOneShot (walkAu);
-		}
+		if (moveDir.z != 0 || moveDir.x != 0) {
+			if (cofactor == 1) {
+				if (!Au.isPlaying)
+					Au.PlayOneShot (walkAu);
+			}
+		} 
 
 		if (Input.GetKeyDown (KeyCode.Space)&& controller.isGrounded) {
 			moveDir.y = jSpeed;
+			Au.PlayOneShot (jumpAu);
+			Au.pitch = 1f;
 		}
 		if (Input.GetKey (KeyCode.LeftShift)) {
 			cofactor = 2f;
-			Au.pitch = 2f;
+			if (moveDir.z != 0 || moveDir.x != 0) {
+				if (!Au.isPlaying)
+					Au.PlayOneShot (runAu);
+			}else
+				Au.Stop ();
 		} else if (Input.GetKeyUp (KeyCode.LeftShift)) {
 			cofactor = 1f;
-			Au.pitch = 1f;
+			Au.Stop();
 		} else if (Input.GetKey (KeyCode.C)) {
 			cofactor = 0.5f;
-			Au.pitch = 0.6f;
+			if (moveDir.z != 0 || moveDir.x != 0) {
+				if (!Au.isPlaying)
+					Au.PlayOneShot (sitAu);
+			} else
+				Au.Stop ();
 		} else if (Input.GetKeyUp (KeyCode.C)) {
 			cofactor = 1f;
-			Au.pitch = 1f;
+			Au.Stop();
 		}
 		
 		moveDir.y -= gravity * Time.deltaTime;
