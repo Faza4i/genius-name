@@ -55,6 +55,9 @@ public class Weapon : MonoBehaviour {
 	public void ShootButtonDown(){
 		if(bulletsChamber > 0) {
 			if (Time.time > nextFire) {
+	void Update () {
+		if (bulletsChamber > 0) {
+			if (Input.GetButton ("Fire1") && Time.time > nextFire) {
 				bulletsChamber--;
 				nextFire = Time.time + 1f / fireRate;
 				Shoot ();
@@ -86,5 +89,4 @@ public class Weapon : MonoBehaviour {
 			}
 		}
 	}
-
 }
